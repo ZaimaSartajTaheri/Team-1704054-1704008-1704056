@@ -77,7 +77,7 @@
 <!----User login/Register----->
                     <div class="top_bar_user">
                         @guest
-                            <div class="more moreApp"><a href="{{ route('login') }}" class="button-pipaluk button--inverted px-4 py-2" style="font-size:16px; color:black;">
+                            <div class="more moreApp"><a href="{{ route('login') }}" class="button-pipaluk button--inverted px-4 py-2"  id="iconbtn" style="font-size:16px; color:black;">
                                 <div class="user_icon"><img src="{{ asset('public/frontend/images/user.svg') }}"></div>
                                 @if(session()->get('lang') == 'bangla')
                                     রেজিস্টার/লগইন
@@ -165,7 +165,49 @@
     </div>
 
 
+    <!------------ Wishlist ------------------->
+            <div class="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
+                <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
+                    @guest
+                    @else
+                        @php
+                        $wishlistCount=DB::table('wishlists')
+                                ->join('user_properties','wishlists.property_id','user_properties.id')
+                                ->join('cities','user_properties.city_id','cities.id')
+                                ->join('subcities','user_properties.subcity_id','subcities.id')
+                                ->join('users','wishlists.user_id','users.id')
+                                ->select('user_properties.*','wishlists.*','cities.city_name','subcities.subcity_name','users.*')
+                                ->where('wishlists.user_id',Auth::id())
+                                ->whereIn('status', [1,2])
+                                ->get();
+                        @endphp
+                    <div class="wishlist d-flex flex-row align-items-center justify-content-end" data-aos="fade-up-left">
+                        <a href="{{route('user.wishlist')}}" style="width: 28px;">
+                        <div class="wishlist_icon"><img src="{{asset('public/frontend/images/heart.png')}}"></div>
+                        <div class="wishlist_content">
+                        <div class="wishlist_text"><a href="{{ route('user.wishlist') }}">Wishlist</div>
+                            <div class="wishlist_count text-primary">{{ count($wishlistCount) }}</div>
+                        </a>
+                        </div>
+                    </div>
+                    @endguest
 
+
+                    <!-- Cart -->
+                    {{-- <div class="cart" data-aos="fade-up-left">
+                        <div class="cart_container d-flex flex-row align-items-center justify-content-end">
+                            <div class="cart_icon">
+                                <img src="{{asset('public/frontend/images/cart.png')}}" alt="">
+                                <div class="cart_count"><span>0</span></div>
+                            </div>
+                            <div class="cart_content">
+                                <div class="cart_text"><a href="#">Cart</a></div>
+                                <div class="cart_price">$0</div>
+                            </div>
+                        </div>
+                    </div> --}}
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -331,7 +373,7 @@
         *------Featured_Modal_(Call & Email)-------*
 ======================================================--->
 @php
-    $featured=DB::table('user_properties')->select('user_properties.property_code','user_properties.id')->whereIn('status', [1,2])->orderBy('id','desc')->get();   //sob_property(available)
+    $featured=DB::table('user_properties')->select('user_properties.property_code','user_properties.id','user_properties.email')->whereIn('status', [1,2])->orderBy('id','desc')->get();   //sob_property(available)
 @endphp
 
 <!------------------Start_Modal_(Call)---------------------->
@@ -363,6 +405,51 @@
 
 <!------------------Start_Modal_(Email)---------------------->
 @foreach ($featured as $row)
+<div class="modal fade" id="email{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLongTitle">House Owner Email</h3>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body pb-4">
+          <div class="text-center" style="font-size: 18px">House Owner Email</div>
+          <p style="font-size: 18px; margin-left:110px" roll="button" ></i> {{ $row->email }} </p>
+          <p class="text-center mt-3 mb-0 pb-0">Please contact through this Email if you are interested.</p>
+          <span style="font-size: 15px;margin-left:185px;margin-top:0px;" class="text-primary">{{$row->property_code}}</span>
+        </div>
+        {{-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div> --}}
+      </div>
+    </div>
+</div>
+@endforeach
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!---need to delete--->
+{{-- @foreach ($featured as $row)
 <div class="modal fade" id="email{{$row->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -417,7 +504,7 @@
                 <input type="hidden" name="property_code"  value="{{$row->property_code}}">
 
                 {{-- <button type="submit" class="btn btn-block btn-danger text-white">Send Email</button> --}}
-                <div class="more more2">
+                {{-- <div class="more more2">
                     <button type="submit" class="btn btn-block text-white bg-transparent button-pipaluk button--inverted" style="font-size: 17px; padding:8px;">Send Email</button>
                 </div>
             </form>
@@ -429,8 +516,8 @@
       </div>
     </div>
 </div>
-@endforeach
-<!------------------End_Modal_(Email)_Featured---------------------->
+@endforeach 
+<!------------------End_Modal_(Email)_Featured----------------------> --}}
 
 
 

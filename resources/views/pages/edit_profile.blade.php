@@ -18,18 +18,18 @@
                 @csrf
                 <div class="form-group">
                     <label for="exampleInputEmail1">Full Name </label>
-                    <input type="text" class="form-control"  aria-describedby="emailHelp" placeholder="Enter Full Name" name="name" value="{{ $profile->name }}" required="">
+                    <input type="text" id="uname" class="form-control"  aria-describedby="emailHelp" placeholder="Enter Full Name" name="name" value="{{ $profile->name }}" required="">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Phone </label>
-                    <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" aria-describedby="emailHelp" placeholder="Enter Phone" value="{{ $profile->phone }}" required="">
+                    <input id="uphone"  type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" aria-describedby="emailHelp" placeholder="Enter Phone" value="{{ $profile->phone }}" required="">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email </label>
-                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" aria-describedby="emailHelp" placeholder="Enter Email" value="{{ $profile->email }}" required="">
+                    <input id="uemail"  type="email" class="form-control @error('email') is-invalid @enderror" name="email" aria-describedby="emailHelp" placeholder="Enter Email" value="{{ $profile->email }}" required="">
                 </div>
                 <div class="contact_form_button more more2">
-                    <button type="submit" class="btn btn-block bg-transparent text-white button-pipaluk button--inverted px-4 py-1" style="font-size:16px;">Submit</button>
+                    <button id="ubtn" type="submit" class="btn btn-block bg-transparent text-white button-pipaluk button--inverted px-4 py-1" style="font-size:16px;">Submit</button>
                 </div>
             </form>
 

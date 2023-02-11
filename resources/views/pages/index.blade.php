@@ -99,28 +99,6 @@
                                     </div>
 
 
-                                    <div class="deals_timer d-flex flex-row align-items-center justify-content-start">
-                                        <div class="deals_timer_title_container">
-                                            <div class="deals_timer_title">Hurry Up</div>
-                                            <div class="deals_timer_subtitle">Offer ends in:</div>
-                                        </div>
-                                        <div class="deals_timer_content ml-auto">
-                                            <div class="deals_timer_box clearfix" data-target-time="">
-                                                <div class="deals_timer_unit">
-                                                    <div id="deals_timer2_hr" class="deals_timer_hr"></div>
-                                                    <span>hours</span>
-                                                </div>
-                                                <div class="deals_timer_unit">
-                                                    <div id="deals_timer2_min" class="deals_timer_min"></div>
-                                                    <span>mins</span>
-                                                </div>
-                                                <div class="deals_timer_unit">
-                                                    <div id="deals_timer2_sec" class="deals_timer_sec"></div>
-                                                    <span>secs</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         @endforeach
@@ -265,10 +243,10 @@
             <!-- Product Panel -->
 
             <div class="product_panel panel">
-                <div class="featured_slider slider pb-5 mb-5">
+                    <div class="featured_slider slider pb-5 mb-5">
 
-                    <!-- Slider Item -->
-<!---------------------------------------------------------------->
+                                    <!-- Slider Item -->
+                                 <!---------------------------------------------------------------->
                         @foreach($sale as $row)
                             <!-- Slider Item -->
                             <div class="featured_slider_item">
@@ -314,21 +292,21 @@
                                             </div>
                                         </div>
 
-        <!--------"Call & Email" (app.balde.php e niche "Modal" er code ache)-------->
+                                                 <!--------"Call & Email" (app.balde.php e niche "Modal" er code ache)-------->
                                         <div class="product_extras product_cart_button more moreFront">
-    <a class="btn py-2 px-3 text-white button-pipaluk button--inverted" style="font-size: 16px" roll="button" data-toggle="modal" data-target="#call{{$row->id}}"><i class="fas fa-phone pr-1"></i> Call </a>
-    <a class="btn py-2 px-3 text-white button-pipaluk button--inverted" style="font-size: 16px" roll="button" data-toggle="modal" data-target="#email{{$row->id}}"><i class="far fa-envelope pr-1"></i> Email </a>
+                                           <a class="btn py-2 px-3 text-white button-pipaluk button--inverted" style="font-size: 16px" roll="button" data-toggle="modal" data-target="#call{{$row->id}}"><i class="fas fa-phone pr-1"></i> Call </a>
+                                              <a class="btn py-2 px-3 text-white button-pipaluk button--inverted" style="font-size: 16px" roll="button" data-toggle="modal" data-target="#email{{$row->id}}"><i class="far fa-envelope pr-1"></i> Email </a>
                                         </div>
                                     </div>
 
-        <!------'Wishlist' using Toastr--------->
+                                             <!------'Wishlist' using Toastr--------->
                                     <a href="{{ URL::to('add/wishlist/tostr/'.$row->id) }}" title="Add to wishlist">
                                         <div class="product_fav">
                                             <i class="fa fa-heart text-danger"></i>
                                         </div>
                                     </a>
-
-        <!---------(Discount equation)-------->
+ 
+                                          <!---------(Discount equation)-------->
                                     <ul class="product_marks">
                                         @if($row->discount_price == NULL)
                                         <li class="product_mark product_discount" style="background: #6868cc;">New</li>
@@ -366,7 +344,7 @@
                 <div class="featured_slider slider pb-5 mb-5">
 
                     <!-- Slider Item -->
-<!---------------------------------------------------------------->
+                              <!---------------------------------------------------------------->
                     @foreach($rent as $row)
                         <!-- Slider Item -->
                         <div class="featured_slider_item">

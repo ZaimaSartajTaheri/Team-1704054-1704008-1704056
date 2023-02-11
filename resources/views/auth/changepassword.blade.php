@@ -52,7 +52,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary" id="cpbtn">
                                     {{ __('Password Change') }}
                                 </button>
                             </div>
@@ -68,7 +68,7 @@
                  <div class="card" style="width: 18rem;">
 
                     <a href="{{ route('home') }}">
-                        {{-- <img src=" {{ asset('public/frontend/images/user.svg') }}" class="card-img-top mt-3" style="height: 90px; width: 90px; margin-left: 34%;"> --}}
+                        <img src="{{ asset('public/avatar.jpg') }}" class="card-img-top mt-3" style="height: 90px; width: 90px; margin-left: 34%;">
                     </a>
                     <div class="card-body more moreApp" style="margin-left: 80px;">
                         <a href="{{ route('home') }}" class="button-pipaluk button--inverted text-primary px-4 pt-1"> <h4 class="text-center">{{ Auth::user()->name }}</h4></a>
@@ -84,7 +84,6 @@
                     </div>
                 </div>
                </div>
-              
         </div>
     </div>
 </div>

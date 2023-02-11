@@ -23,24 +23,16 @@
     "vue": "^2.5.17",
     "vue-template-compiler": "^2.6.10"
   },
-  "name": "houserental2.0",
-  "description": "��#\u0000 \u0000T\u0000e\u0000a\u0000m\u0000-\u00001\u00007\u00000\u00004\u00000\u00005\u00004\u0000-\u00001\u00007\u00000\u00004\u00000\u00000\u00008\u0000-\u00001\u00007\u00000\u00004\u00000\u00005\u00006\u0000\r\u0000 \u0000",
+  "name": "houserentalf.0",
+  "description": "<div align=\"center\">",
   "version": "1.0.0",
   "main": "webpack.mix.js",
   "directories": {
     "test": "tests"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ZaimaSartajTaheri/Team-1704054-1704008-1704056.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ZaimaSartajTaheri/Team-1704054-1704008-1704056/issues"
-  },
-  "homepage": "https://github.com/ZaimaSartajTaheri/Team-1704054-1704008-1704056#readme",
   "dependencies": {
     "cypress": "^12.4.1"
   }

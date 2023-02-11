@@ -63,7 +63,8 @@ class FrontController extends Controller
 //----------------Store_User_added_Property----------------------------
     public function storeUserProperty(Request $request){
 
-        $email= $request->email;     //-------Taking user email for Sending Email-----------
+        $email= $request->email;   
+        $subcity=DB::table('subcities')->where('id',$request->subcity_id)->first();  //-------Taking user email for Sending Email-----------
         //$email=Auth::user()->email;   //--Taking user email for Sending Email---
 
         $data=array();
@@ -74,7 +75,7 @@ class FrontController extends Controller
     	$data['email']=$request->email;
     	$data['phone']=$request->phone;
     	$data['address']=$request->address;
-    	$data['subcity']=$request->subcity;
+    	$data['subcity']=$subcity->subcity_name;
     	$data['bedroom']=$request->bedroom;
     	$data['bathroom']=$request->bathroom;
     	$data['parking']=$request->parking;
@@ -87,11 +88,11 @@ class FrontController extends Controller
         $data['category']=$request->category;
         $data['floor']=$request->floor;
     	$data['details']=$request->details;
-    	$data['video']=$request->video;
+    	// $data['video']=$request->video;
         $data['purpose']=$request->purpose;
         $data['status']=0;
         $data['property_code']= 'BW-'.mt_rand(100000,999999);
-        $data['map_link']=$request->map_link;
+        // $data['map_link']=$request->map_link;
         $data['date']=date('d-m-y');
         $data['month']=date('F');
         $data['year']=date('Y');
@@ -119,29 +120,29 @@ class FrontController extends Controller
                 $data['image_three']='public/media/user_property/'.$image_three_name;
 
 
-            $property_id = DB::table('user_properties')->insertGetId($data);
+            // $property_id = DB::table('user_properties')->insertGetId($data);
 
-            Mail::to($email)->send(new invoiceMail($data));     //-------For sending Mail to user---------
+            // Mail::to($email)->send(new invoiceMail($data));     //-------For sending Mail to user---------
 
-            $user = Auth::user();
-            $price = $request->price;
+            // $user = Auth::user();
+            // $price = $request->price;
 
             //session()->flash('type','success');
             //session()->flash('message','Successfully Property Inserted');
 
-            return view('exampleHosted', compact('user','property_id','price'));
+            // return view('pages.index');
 
 
             //-------------------before implementing payment gateway-----------------------------
-                // $userProperty=DB::table('user_properties')->insert($data);
+                $userProperty=DB::table('user_properties')->insert($data);
 
                 // Mail::to($email)->send(new invoiceMail($data));   //--For sending Mail to user--
 
-                // $notification=array(
-                //     'message'=>'Successfully Property Inserted',
-                //     'alert-type'=>'success'
-                // );
-                // return Redirect()->back()->with($notification);
+                $notification=array(
+                    'message'=>'Successfully Property Inserted',
+                    'alert-type'=>'success'
+                );
+                return Redirect()->to('/')->with($notification);
         }
     }
 
@@ -172,8 +173,36 @@ class FrontController extends Controller
                 ->union($property1)
                 ->paginate(4);
 
+                $hospital=DB::table('hospitals')
+                ->join('cities','hospitals.city_id','cities.id')
+                ->join('subcities','hospitals.subcity_id','subcities.id')
+                ->where('subcities.subcity_name',$item)
+                ->select('hospitals.*')
+                ->get();
+        
+        $school=DB::table('schools')
+                ->join('cities','schools.city_id','cities.id')
+                ->join('subcities','schools.subcity_id','subcities.id')
+                ->where('subcities.subcity_name',$item)
+                ->select('schools.*')
+                ->get();
+
+        $park=DB::table('parks')
+                ->join('cities','parks.city_id','cities.id')
+                ->join('subcities','parks.subcity_id','subcities.id')
+                ->where('subcities.subcity_name',$item)
+                ->select('parks.*')
+                ->get();
+
+        $market=DB::table('markets')
+                ->join('cities','markets.city_id','cities.id')
+                ->join('subcities','markets.subcity_id','subcities.id')
+                ->where('subcities.subcity_name',$item)
+                ->select('markets.*')
+                ->get();
+
         // dd($property);
-         return view('pages.search',compact('property','item'));
+         return view('pages.search',compact('hospital','school','park','market','property','item'));
     }
 
 

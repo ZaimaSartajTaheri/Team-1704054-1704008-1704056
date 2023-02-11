@@ -21,8 +21,8 @@
                         <form action="{{ route('login') }}" id="contact_form" method="post">
                             @csrf
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email Or Phone</label>
-                                <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  aria-describedby="emailHelp" placeholder="Email Or Phone" required="">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="text" id="lemail" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  aria-describedby="emailHelp" placeholder="Email Or Phone" required="">
                                 @error('email')
                                    <span class="invalid-feedback" role="alert">
                                        <strong>{{ $message }}</strong>
@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Password</label>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required=""  aria-describedby="emailHelp" placeholder="Password">
+                                <input type="password" id="lpass" class="form-control @error('password') is-invalid @enderror" name="password" required=""  aria-describedby="emailHelp" placeholder="Password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -39,11 +39,12 @@
                                 @enderror
                             </div>
                             <div class="contact_form_button more more2">
-                                <button type="submit" class="btn bg-transparent text-white button-pipaluk button--inverted px-4 py-2" style="font-size:16px;">Login</button>
+                                <button type="submit" id="lbt" class="btn bg-transparent text-white button-pipaluk button--inverted px-4 py-2" style="font-size:16px;">Login</button>
                             </div>
                         </form><br>
-                        <a href="{{ route('password.request') }}">I Forgot My Password.</a>
+                        {{-- <a href="{{ route('password.request') }}">I Forgot My Password.</a> --}}
                         <br><br>
+
 
                     </div>
                 </div>
@@ -71,7 +72,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Email </label>
-                                <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  aria-describedby="emailHelp" placeholder="Email " required="">
+                                <input type="text" class="form-control remail @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  aria-describedby="emailHelp" placeholder="Email " required="">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -80,7 +81,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Password</label>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror" aria-describedby="emailHelp" placeholder="Password" name="password" required="" autocomplete="new-password">
+                                <input type="password" class="form-control rpass @error('password') is-invalid @enderror" aria-describedby="emailHelp" placeholder="Password" name="password" required="" autocomplete="new-password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -92,7 +93,7 @@
                                 <input type="password" class="form-control" aria-describedby="emailHelp" placeholder="Re-type Password" name="password_confirmation" required="" autocomplete="new-password">
                             </div>
                             <div class="contact_form_button more">
-                                <button type="submit" class="btn bg-transparent text-white button-pipaluk button--inverted px-4 py-2" style="font-size:16px;">Sign Up</button>
+                                <button type="submit" class="btn rbt bg-transparent text-white button-pipaluk button--inverted px-4 py-2" style="font-size:16px;">Sign Up</button>
                             </div>
                         </form>
 

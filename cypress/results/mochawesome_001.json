@@ -1,0 +1,48 @@
+               "_timeout":2000
+            }
+         ],
+         "passes":[
+            
+         ],
+         "failures":[
+            
+         ],
+         "pending":[
+            
+         ],
+         "skipped":[
+            
+         ],
+         "duration":0,
+         "root":true,
+         "rootEmpty":true,
+         "_timeout":2000
+      }
+   ],
+   "meta":{
+      "mocha":{
+         "version":"7.0.1"
+      },
+      "mochawesome":{
+         "options":{
+            "quiet":false,
+            "reportFilename":"mochawesome",
+            "saveHtml":false,
+            "saveJson":true,
+            "consoleReporter":"spec",
+            "useInlineDiffs":false,
+            "code":true
+         },
+         "version":"7.1.3"
+      },
+      "marge":{
+         "options":{
+            "reportDir":"cypress/results",
+            "overwrite":false,
+            "html":false,
+            "json":true
+         },
+         "version":"6.2.0"
+      }
+   }
+}

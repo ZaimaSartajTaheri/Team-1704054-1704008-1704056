@@ -2,25 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-        //------------SSLCOMMERZ Start---------------
-Route::post('/checkout', 'SslCommerzPaymentController@checkout');
-
-//Route::get('/example2', 'SslCommerzPaymentController@exampleHostedCheckout');
-//Route::post('/pay', 'SslCommerzPaymentController@index');  //host default
-
-//Route::get('/example1', 'SslCommerzPaymentController@exampleEasyCheckout'); //pop-up
-//Route::post('/pay-via-ajax', 'SslCommerzPaymentController@payViaAjax');
-
-Route::post('/success', 'SslCommerzPaymentController@success');
-Route::post('/fail', 'SslCommerzPaymentController@fail');
-Route::post('/cancel', 'SslCommerzPaymentController@cancel');
-
-Route::post('/ipn', 'SslCommerzPaymentController@ipn');
-        //------------SSLCOMMERZ END-------------
-
-        //---------Socialite----------
-Route::get('/auth/redirect/{provider}', 'SocialController@redirect');
-Route::get('/callback/{provider}', 'SocialController@callback');
+       
+     
         //------------blog-------------------
 Route::get('blog/post','BlogController@blog')->name('blog.post');   //--nav--
 Route::get('language/bangla','BlogController@Bangla')->name('language.bangla');
@@ -33,6 +16,8 @@ Route::get('blog/description/{id}','BlogController@description');
 Route::get('/', function(){
         return view('pages.index'); 
     });
+
+// Route::post('/password/reset', 'HomeController@changeFPassword')->name('change.password');
     
     
             //-------AUTH & USER Section----------
@@ -101,8 +86,21 @@ Route::get('delete/category/name/{id}','Admin\PostController@deleteCat');
 Route::get('edit/category/name/{id}','Admin\PostController@editCat');
 Route::post('update/categoryName/{id}','Admin\PostController@updateCat');
 //----------------------
-Route::get('admin/add/post', 'Admin\PostController@create')->name('add.blogpost');  //--nav--
+Route::get('admin/add/post', 'Admin\PostController@create')->name('add.blogpost'); 
+Route::get('admin/add/info', 'Admin\PostController@createInfo')->name('add.info');
+ //--nav--
 Route::post('admin/store/post', 'Admin\PostController@store')->name('store.post');
+// Route::post('admin/store/info', 'Admin\PostController@storeHospitalInfo')->name('hospital');
+// Route::post('admin/store/info', 'Admin\PostController@storeSchoolInfo')->name('school');
+// Route::post('admin/store/info', 'Admin\PostController@storeParkInfo')->name('park');
+// Route::post('admin/store/info', 'Admin\PostController@storeMarketInfo')->name('market');
+
+Route::post('admin/store/hospitalInfo', 'Admin\PostController@storeHospitalInfo');
+Route::post('admin/store/schoolInfo', 'Admin\PostController@storeSchoolInfo');
+Route::post('admin/store/parkInfo', 'Admin\PostController@storeParkInfo');
+Route::post('admin/store/marketInfo', 'Admin\PostController@storeMarketInfo');
+// Route::get('getsubcities/{city_id}','Admin\PostController@getSubCity');
+
 Route::get('admin/all/post', 'Admin\PostController@index')->name('all.blogpost');   //--nav--
 Route::get('delete/post/{id}','Admin\PostController@destroy');
 Route::get('edit/post/{id}','Admin\PostController@edit');
@@ -170,6 +168,7 @@ Route::get('user/add/property','FrontController@userProperty')->name('add.proper
 Route::post('store/user/property','FrontController@storeUserProperty')->name('store.user.property');  //(user+admin) insert property)
         //-----for All_Property_View/showing-----------
 Route::get('properties/{id}', 'PropertyController@subcityPropertyView');   //All_subcity_property
+// Route::get('properties/{id}', 'PropertyController@hospitalsInfoshow');   //hospital Info
 Route::get('city/properties/{id}', 'PropertyController@cityPropertyView'); //All_city_property
         //---------Showing_Individual_Property_deatails-----------
 Route::get('property/details/{id}','PropertyController@PropertyDetails');
